@@ -1,0 +1,40 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760M (ID=0x11e3)
+    Vendor:   NVIDIA
+    VRAM:     2019 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\vt-and-reports\VT\tstBuild\build_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\vt-and-reports\VT\tstBuild\build_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\vt-and-reports\VT\tstBuild\build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\vt-and-reports\VT\tstBuild\build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\vt-and-reports\VT\tstBuild\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.077 seconds
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\vt-and-reports\VT\tstBuild\build_Data\Managed\System.dll (this message is harmless)
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.064627 ms
+DirectoryNotFoundException: Directory 'D:\vt-and-reports\VT\tstBuild\Records' not found.
+  at System.IO.Directory.GetFileSystemEntries (System.String path, System.String searchPattern, FileAttributes mask, FileAttributes attrs) [0x00000] in <filename unknown>:0 
+  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern) [0x00000] in <filename unknown>:0 
+  at System.IO.DirectoryInfo.GetFiles (System.String searchPattern) [0x00000] in <filename unknown>:0 
+  at (wrapper remoting-invoke-with-check) System.IO.DirectoryInfo:GetFiles (string)
+  at AnimationListCreator.GenerateTrainersButtons () [0x00000] in <filename unknown>:0 
+  at AnimationListCreator.Refresh () [0x00000] in <filename unknown>:0 
+  at AnimationListCreator.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 8360 -> priority: 1 
+  Thread -> id: 5f7c -> priority: 1 
