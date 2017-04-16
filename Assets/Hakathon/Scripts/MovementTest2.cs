@@ -5,77 +5,44 @@ using UnityEngine.Networking;
 
 public class MovementTest2 : NetworkBehaviour {
 
+    private GameObject l_mainCamera = null;
+    private Camera l_cam = null;
 
-    public float velocity = 0.2f;
+    private void Start()
+    {
+        if (isLocalPlayer)
+        {
+            l_mainCamera = GameObject.FindGameObjectWithTag("MainCamera") as GameObject;
+            if (l_mainCamera != null)
+            {
+                l_cam = l_mainCamera.GetComponent<Camera>();
+                /*GameObject CameraInitHelper = GameObject.FindGameObjectWithTag("CameraInit");
+                if (CameraInitHelper != null)
+                {
+                    //l_cam.transform.position = CameraInitHelper.transform.position;
+                    //l_cam.transform.rotation = CameraInitHelper.transform.rotation;
+                    l_cam.transform.SetParent(gameObject.transform, false);
+                }*/
+            }
+        }
+    }
 
-    public float rotationVelocity = 1.0f;
-
-    public float lerpK = 0.2f;
-
-    private float i_curLerp = 0f;
-    private float i_curRotLerp = 0f;
-
-    private Vector3 lastVelocity = Vector3.zero;
-
-    [SyncVar]
-    Vector3 position = Vector3.zero;
-
-    [SyncVar]
-    Quaternion rotation = Quaternion.identity;
-    
-
-    Vector3 oldPosition = Vector3.zero;
-    Quaternion oldRotation = Quaternion.identity;
-
-    // Use this for initialization
-    void Start() {
-
+    private void Update()
+    {
+        if (l_cam != null)
+        {
+            l_cam.transform.localPosition = transform.localPosition + transform.up * 0.9f - transform.forward * 1f;
+            l_cam.transform.localEulerAngles = transform.localEulerAngles;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateServer()
     {
-        if (isClient && !isLocalPlayer)
+        if (isLocalPlayer && isClient)
         {
-            /*
-            if (oldPosition != position)
-            {
-                i_curLerp += lerpK;
-                Vector3 newPosition = Vector3.Lerp(oldPosition, position, i_curLerp);
-                lastVelocity = newPosition - oldPosition;
-                oldPosition = newPosition;
-                transform.position = oldPosition;
-            }
-            else
-            {
-                i_curLerp = 0f;
-                transform.position += Time.deltaTime * lastVelocity;
-            }
-            if(oldRotation != rotation)
-            {
-                i_curRotLerp += lerpK;
-                Quaternion newRot = Quaternion.Lerp(oldRotation, rotation, i_curRotLerp);
-                oldRotation = newRot;
-                transform.rotation = oldRotation;
-            }
-            else
-            {
-                i_curRotLerp = 0f;
-            }
-            */
+            CmdRecordPosition(transform.position, transform.rotation);
         }
-        else
-        {
-            if (isLocalPlayer && isClient)
-            {
-                float l_displacement = Input.GetAxis("Vertical") * velocity;
-                float l_rotation = Input.GetAxis("Horizontal") * rotationVelocity;
-                transform.Rotate(new Vector3(0f, l_rotation, 0f));
-                transform.position += transform.forward * l_displacement;
-                CmdRecordPosition(transform.position, transform.rotation);
-            }
-        }
-
 	}
 
     [Command]

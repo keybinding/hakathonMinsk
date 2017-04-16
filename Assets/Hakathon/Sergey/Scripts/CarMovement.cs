@@ -14,6 +14,8 @@ public class CarMovement : MonoBehaviour {
 
     private float timeToWait = 0;
 
+    MovementTest2 networkIdentity = null;
+
     bool CheckForHanging()
     {
         if (Physics.Raycast(transform.position, -transform.up, 1.0f))
@@ -40,12 +42,16 @@ public class CarMovement : MonoBehaviour {
     void Start()
     {
         i_rgdBody = GetComponent<Rigidbody>();
+        networkIdentity = GetComponent<MovementTest2>();
         lastSucceedLocation = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (networkIdentity == null) return;
+        if (!networkIdentity.isLocalPlayer || !networkIdentity.isClient) return;
         if (!i_rgdBody) return;
 
         if (timeToWait > 0)
@@ -81,5 +87,6 @@ public class CarMovement : MonoBehaviour {
         transform.position += transform.forward * l_displacement;
 
         if (!CheckForHanging()) transform.position = lastSucceedLocation;
+        if (networkIdentity != null) networkIdentity.UpdateServer();
     }
 }
